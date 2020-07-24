@@ -8,7 +8,7 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   type: LoadBalancer
-  loadBalancerIP: 15.1.0.100
+  loadBalancerIP: 15.1.2.100
   ports:
   - port: 80
     targetPort: 80

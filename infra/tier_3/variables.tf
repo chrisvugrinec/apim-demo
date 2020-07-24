@@ -14,6 +14,10 @@ variable "tier" {
   default = "3"
 }
 
+variable "mgmt-vnet" {
+  default = "vuggie-mgmt-demo-vnet"
+}
+
 variable "mgmt-tier" {
   default = "2"
 }

@@ -24,6 +24,8 @@ module "app1-team" {
   rg-name       = "${local.name-convention}-apimdemo-resources"
   location      = var.location
   aks-vnet      = var.aks-vnet
+  dns-zone      = "apimdemo.service.local"
+  mgmt-vnet     = var.mgmt-vnet
   mgmt-rg       = "${var.environment}-${var.location}-2-apimdemo-mgmt-resources"
   aks-subnet-cidr = "15.1.2.0/24"
 }

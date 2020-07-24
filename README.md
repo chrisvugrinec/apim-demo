@@ -29,6 +29,6 @@ For this demo you will need the following Azure Infra components: AKS cluster, A
 
 Please note thate the current Internal loadbalancer is based on the following configured IP address:   
 ```
-  loadBalancerIP: 15.1.0.100
+  loadBalancerIP: 15.1.2.100
 ```
 If you like to change this, make sure that it is in the range of your configured AKS subnet. You can change the ip of the ingress loadbalancer by editing this file: ```ingress/nginx/service/loadbalancer.yaml```
