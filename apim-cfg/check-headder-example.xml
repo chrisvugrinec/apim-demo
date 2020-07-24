@@ -1,0 +1,16 @@
+<policies>
+    <inbound>
+        <check-header name="ok" failed-check-httpcode="401" failed-check-error-message="message" ignore-case="true">
+            <value>chris</value>
+        </check-header>
+    </inbound>
+    <backend>
+        <forward-request />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
