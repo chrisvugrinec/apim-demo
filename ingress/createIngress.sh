@@ -1,5 +1,3 @@
-AKS_CLUSTER=$1
-AKS_RG=$2
 
 if [ "$#" -ne 2 ] ;
 then
@@ -10,16 +8,13 @@ then
   exit 1
 fi
 
-cluster_name="aks-apimdemo-app1"
-cluster_name_subnet="aks-apimdemo-app1-subnet"
-admin_resource_group="dev-australiaeast-2-apimdemo-mgmt-resources"
-aks_vnet_name="vuggie-aks-demo-vnet"
-
+AKS_CLUSTER=$1
+AKS_RG=$2
 
 # Needed for managed ID to create network resources on aks subnet
 function assignContribRoleToManagedIdentity(){
    appId=$(az ad sp list --all --filter "displayname eq '"$AKS_CLUSTER"'" --query [].appId -o tsv)
-   subnetId=$(az network vnet subnet show -n $cluster_name_subnet -g $admin_resource_group --vnet-name $aks_vnet_name --query id -o tsv)
+   subnetId=$(az aks show -n $AKS_CLUSTER -g $AKS_RG --query agentPoolProfiles[].vnetSubnetId -o tsv )
    az role assignment create --assignee $appId --role "Contributor" --scope $subnetId
 }
 

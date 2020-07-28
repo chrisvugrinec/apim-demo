@@ -1,5 +1,18 @@
 echo "make sure you are connected to the proper kube cluster"
-echo "did you do the az aks get-credentials command???"
+
+AKS_CLUSTER=$1
+AKS_RG=$2
+
+if [ "$#" -ne 2 ] ;
+then
+  echo "Usage: $0 AKS_CLUSTER AKS_RG"
+  echo ""
+  echo "AKS Clusters:"
+  az aks list -o table
+  exit 1
+fi
+
+az aks get-credentials -n $AKS_CLUSTER -g $AKS_RG
 
 kubectl apply -f service-account.yaml
 

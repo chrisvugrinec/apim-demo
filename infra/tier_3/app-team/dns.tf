@@ -6,6 +6,7 @@ data "azurerm_virtual_network" "demo" {
 resource "azurerm_private_dns_zone" "demo" {
   name                = var.dns-zone
   resource_group_name = var.rg-name
+  depends_on          = [azurerm_resource_group.demo]
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "demo" {
