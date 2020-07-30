@@ -63,6 +63,11 @@ After this deployments you should be able to:
 
 ### Config APIM
 
+In your Azure Poral go to the APIM and select the API tab:
+
+![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim1.png)
+
+
 ![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim-svc-config.png)
 
 
