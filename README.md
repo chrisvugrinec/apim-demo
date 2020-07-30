@@ -45,8 +45,6 @@ Please note thate the current Internal loadbalancer is based on the following co
 ```
 If you like to change this, make sure that it is in the range of your configured AKS subnet. You can change the ip of the ingress loadbalancer by editing this file: ```ingress/nginx/service/loadbalancer.yaml```
 
-![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim-svc-config.png)
-
 ### Deploy service
 
 Deploy the sayHello service
@@ -65,6 +63,7 @@ After this deployments you should be able to:
 
 ### Config APIM
 
+![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim-svc-config.png)
 
 
 ## Links

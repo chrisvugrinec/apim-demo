@@ -17,8 +17,18 @@ resource "azurerm_private_dns_zone_virtual_network_link" "demo" {
   depends_on          = [azurerm_private_dns_zone.demo]
 }
 
-resource "azurerm_private_dns_a_record" "demo" {
+resource "azurerm_private_dns_a_record" "hello_demo" {
   name                = "hello"
+  zone_name           = azurerm_private_dns_zone.demo.name
+  resource_group_name = var.rg-name
+  ttl                 = 300
+  records             = ["15.1.2.100"]
+  depends_on          = [azurerm_private_dns_zone_virtual_network_link.demo]
+}  
+
+
+resource "azurerm_private_dns_a_record" "poker_demo" {
+  name                = "poker"
   zone_name           = azurerm_private_dns_zone.demo.name
   resource_group_name = var.rg-name
   ttl                 = 300

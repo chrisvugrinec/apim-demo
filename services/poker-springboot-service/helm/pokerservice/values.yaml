@@ -16,6 +16,6 @@ service:
 ingress:
   enabled: true
   # Used to create an Ingress record.
-  host: hello.apimdemo.service.local
+  host: poker.apimdemo.service.local
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
