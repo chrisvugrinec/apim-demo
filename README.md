@@ -77,11 +77,33 @@ services/poker-springboot-service/api.json
 ```
 In the `API URL suffix` you fill in the path you like your service to be accessible from the APIM.
 
-![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim-svc-config.png)
-
 Your service is now visible within the API portal, select your service and then select the `Design` tab. Within the design tab, select the policy for Inbound processing:
 
 ![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim3.png)
+
+In this policy you should forward your backend request to the AKS backend service, by adding this code:
+```
+<policies>
+...
+    <backend>
+        <forward-request />
+    </backend>
+...
+</policies>
+```
+Please note that you can configure this policy on Operation level or more globally on API level. If you do not configure this, you backend service will never be reached, also have a look at the caching possibilities.
+
+In the `Settings` tab you need to configure the URL of your backend service. If you used the scripts in this repo you should have 2 domains configured:
+```
+hello.apimdemo.service.local
+poker.apimdemo.service.local
+```
+both services are pointing to the internal loadbalancer, which is pre configured on this address: `15.1.2.100`. This address is used by the nginx ingress controller, which will make sure that you address the appropriate services.
+
+For the hello service you used fill in: `http://hello.apimdemo.service.local` in the `Web service URL` field. Make sure you select `HTTP`. 
+For the poker service your config should look like this:
+
+![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim5.png)
 
 
 
