@@ -1,5 +1,6 @@
 package com.pokerhost.services.endpoint;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -7,6 +8,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +31,10 @@ public class PokerHostEndpoint {
     static final int DEFAULT_PAGE_SIZE = 10;
     static final String HEADER_TOKEN = "token";
     static final String HEADER_USER_ID = "userId";
+    
 
+
+    
     @Autowired
     PokerHostService pokerHostService;
 
@@ -45,33 +51,34 @@ public class PokerHostEndpoint {
     	//	Ignoring the Param for now 
     	pokerHostService.init(nrOfPlayers);
     }
- 
-    @RequestMapping(path = "/v1/deal", method = RequestMethod.GET)
-    @ApiOperation(
-            value = "TestDeal hand to players, can only be called after INIT",
-            notes = "Needs to be initialized 1st; Gives the players 2 random cards from card stack",
-            response = String.class)
-    public ResponseEntity<Game>  deal() throws Exception {
-    	
-    	//	Ignoring the Param for now 
-        //      TODO refactor this
-    	Game game = pokerHostService.deal();
-    	return ResponseEntity.ok().body(game);
-    }
 
     
-    @RequestMapping(path = "/v1/dealTest", method = RequestMethod.GET)
+    
+    @RequestMapping(path = "/v1/deal", method = RequestMethod.GET)
     @ApiOperation(
-            value = "TestDeal hand to players, can only be called after INIT",
+            value = "Deal hand to players, can only be called after INIT",
             notes = "Gives the players 2 random cards from card stack",
             response = String.class)
-    public ResponseEntity<Game>  dealTest(
-            @ApiParam("Number of players for this game") @RequestParam(required=true) @Min(Settings.MIN_PLAYERS) @Max(Settings.MAX_PLAYERS)  Integer nrOfPlayers
+    public ResponseEntity<Game>  deal(
     ) throws Exception {
     	
     	//	Ignoring the Param for now 
-        //      TODO refactor this
-        pokerHostService.init(nrOfPlayers);
+    	Game game = pokerHostService.deal();
+    	return ResponseEntity.ok().body(game);
+    }
+    
+    
+    @RequestMapping(path = "/v1/testdeal", method = RequestMethod.GET)
+    @ApiOperation(
+            value = "Deal hand to players, can only be called after INIT",
+            notes = "Gives the players 2 random cards from card stack",
+            response = String.class)
+    public ResponseEntity<Game>  testdeal(
+            @ApiParam("Number of players for this game") @RequestParam(required=true) @Min(Settings.MIN_PLAYERS) @Max(Settings.MAX_PLAYERS)  Integer nrOfPlayers
+    ) throws Exception {
+    	
+    	init(nrOfPlayers);
+    	//	Ignoring the Param for now 
     	Game game = pokerHostService.deal();
     	return ResponseEntity.ok().body(game);
     }

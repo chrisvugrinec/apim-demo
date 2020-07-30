@@ -24,10 +24,11 @@ public class PokerHostService {
 
 
 	private Game game;
-	List<User> playaz = new ArrayList<User>();
+	List<User> playaz = null;
 
 	
 	public void init( int nrOfPlayers ) {
+		playaz = new ArrayList<User>();
     	for (int i=0; i< nrOfPlayers; i++) {
     		User user = new User();
     		user.setId(new Random().nextInt(100));
@@ -42,7 +43,8 @@ public class PokerHostService {
     	int nrOfPlayers = playaz.size();
     	if( nrOfPlayers<Settings.MIN_PLAYERS || nrOfPlayers>Settings.MAX_PLAYERS ) 
     		throw new Exception("number of players not within reach ");
-    	
+    	if ( playaz == null )
+    		throw new Exception("players set not initialized ");    	
     	game = new Game(GameCounter.COUNTER++, playaz);
         return game;
     }

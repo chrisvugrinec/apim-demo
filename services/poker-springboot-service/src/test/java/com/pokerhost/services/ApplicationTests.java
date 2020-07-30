@@ -42,12 +42,14 @@ public class ApplicationTests {
 		CardDeck cardDeck = testGame.getDeck();
 		assertTrue( cardDeck.getStack().size() == (CardDeck.DECK_SIZE - (nrOfPlayers*2))  );
 		
+		/*
 		for (PokerHand pokerHand : testGame.getPokerHands()) {
 			System.out.println("Player: "+pokerHand.getPlayerID());
 			System.out.println(pokerHand.getCard1());
 			System.out.println(pokerHand.getCard2());
 
 		}
+		*/
 		//assertTrue(deck.getStack().size()==deck.DECK_SIZE);
 	}
 	

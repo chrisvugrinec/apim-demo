@@ -3,7 +3,7 @@
 replicaCount: 2
 image:
   repository: cvugrinec/pokerhost-service
-  tag: latest
+  tag: 2
   pullSecret: regsecret
   pullPolicy: Always
   # for local development against Minikube registry
@@ -16,8 +16,6 @@ service:
 ingress:
   enabled: true
   # Used to create an Ingress record.
-  hosts:
-    - hello.apimdemo.service.local
+  host: hello.apimdemo.service.local
   annotations:
-    kubernetes.io/tls-acme: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: "/"
+    nginx.ingress.kubernetes.io/rewrite-target: /

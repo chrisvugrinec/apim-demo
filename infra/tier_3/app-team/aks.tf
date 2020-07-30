@@ -30,12 +30,13 @@ resource "azurerm_kubernetes_cluster" "demo" {
       enabled = false
     }
 
-    azure_policy {
-      enabled = false
-    }
 
     http_application_routing {
       enabled = false
+    }
+
+    azure_policy {
+      enabled = true
     }
 
     kube_dashboard {

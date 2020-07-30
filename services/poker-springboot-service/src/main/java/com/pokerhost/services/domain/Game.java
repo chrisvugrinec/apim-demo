@@ -31,6 +31,8 @@ public class Game {
 	}
 
 	
+	
+	//	Refactor this stuff to REDIS CACHE or DB
 	private void initPlayers(List<User> playersParam) {
 		int counter = 0;
 		//	Check if list of users already exists if not create new
@@ -52,9 +54,9 @@ public class Game {
 				Positions.SMALL_BLIND_POSITION = Positions.BIG_BLIND_POSITION + 1;
 			
 			// First remove players who left the game
-			for (User RemovePlayer : Positions.players.keySet()) {
-				if(!playersParam.contains(RemovePlayer)) {
-					Positions.players.remove(RemovePlayer);
+			for (User removePlayer : Positions.players.keySet()) {
+				if(!playersParam.contains(removePlayer)) {
+					Positions.players.remove(removePlayer);
 				}
 			}
 			
@@ -87,7 +89,8 @@ public class Game {
 		//	New set of pokerhands and deck of cards
     	CardDeck cardDeck = new CardDeck();
 		pokerHands = new ArrayList<PokerHand>();
-		initPlayers(players);
+		
+		//initPlayers(players);
 
     	for (int i=0; i< players.size(); i++) {    		
     		// Initialising players
@@ -96,7 +99,7 @@ public class Game {
     		pokerHand.setCard1(cardDeck.getCard());
     		pokerHand.setCard2(cardDeck.getCard());
     		
-    		pokerHand.setPosition(Positions.players.get(player));
+    		//pokerHand.setPosition(Positions.players.get(player));
     		
     		pokerHands.add(pokerHand);
     	}
