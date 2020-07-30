@@ -63,12 +63,27 @@ After this deployments you should be able to:
 
 ### Config APIM
 
+#### Setup services hosted on aks cluster
+
 In your Azure Poral go to the APIM and select the API tab:
 
 ![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim1.png)
 
+Select the OpenAPI option and use the wizzard to configure the services. 
+In the services folder you can find the api spec (swagger extraction):
+```
+services/hello-python-service/api.json
+services/poker-springboot-service/api.json
+```
+In the `API URL suffix` you fill in the path you like your service to be accessible from the APIM.
 
 ![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim-svc-config.png)
+
+Your service is now visible within the API portal, select your service and then select the `Design` tab. Within the design tab, select the policy for Inbound processing:
+
+![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim3.png)
+
+
 
 
 ## Links
