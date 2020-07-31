@@ -155,10 +155,27 @@ You can find the data for the ```XXX``` values here:
 
 Now you are done, let's test this using postman.
 
+#### Test Authentication
+
 Create a service for your getting your Authoristion token from AUTH0:
 
 ![Postman 1](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/postman1.png)
 
+You should get an Access token, but also make sure that AUTH0 returns a `scope`.
+You can copy the token from the previous service and configure the APIM service like this:
+
+![Postman 2](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/postman2.png)
+
+Select `Baerer Token` in the `Authorization` tag and paste the token there,
+the body of the `hello` service looks like this:
+
+```
+  {
+    "name": "the dude"
+  }
+```
+
+Select send to see if it works, if you fill in an faulty token (or no value at all) you will get and `Unauthorized` message.
 
 
 ## Links
