@@ -2,12 +2,13 @@
 
 ## Intro
 
-This repo contains a cookbook for you to get started with APIM.
-It rolls out an AKS and MGMT vnet. Deploys an AKS cluster with Ingress controller (linked to internal loadbalancer) and creates and APIM gateway on the management VNET. In the last step you will deploy an HelloWorld restService and configure this with the APIM gateway.
+This repo contains a cookbook to get started with APIM.
+It rolls out an AKS and MGMT vnet. Deploys an AKS cluster with Ingress controller (linked to internal loadbalancer) and creates and APIM gateway on the management VNET. Last steps are dedicated on configuring the services (making them available through APIM) and securing the services with an Authentication policy.
+
 
 ![Image of APIM solution](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim2.png)
 
-for more complex scenario (using UDR/ Firewall/ AKS private cluster), please have a look at: https://github.com/chrisvugrinec/aks-sec-demo
+for more complex scenarios (using UDR/ Firewall/ AKS private cluster), please have a look at: https://github.com/chrisvugrinec/aks-sec-demo
 
 ## Cookbook
 
