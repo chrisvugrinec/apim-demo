@@ -2,7 +2,10 @@
 
 ## Intro
 
-Azure APIM is awesome!!!  With APIM you can enforce policies on your (API) services and have a unified portal for managing all your APIS. You can publish your APIs and enable 3rd parties and developers. It is your 1st line defense and you can reuse common functions like : Authentication/ Logging/ Monitoring/Throtteling for all your services.
+Azure APIM is awesome!!!  
+With APIM you can enforce policies on your (API) services and have a portal for managing all your APIS. You can publish your APIs and enable 3rd parties and developers using the development portal.
+
+It is your 1st line defense and you can reuse common functions like : Authentication/ Logging/ Monitoring/Caching and Throtteling for all your services.
 For more information have a look at the links below.
 
 This repo contains a cookbook to get started with APIM.
