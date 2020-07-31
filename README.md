@@ -115,6 +115,7 @@ If you have configured your `<forward-request />` and the proper `Web service UR
 
 There are multiple ways to enforce authentication on your services using APIM. 
 We will use AUTH0 as Secure Token Service (STS), please create an account (it's free) at https://auth0.com/
+Of course you can also use Azure Active Directory or other 3rd party Authentication providers.
 
 Once you have signed up, you will have an instance which can provide a token service for you. Take the following steps:
 
@@ -123,8 +124,40 @@ Once you have signed up, you will have an instance which can provide a token ser
 - Create a [scope](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/auth0-3.png), by selecting the `Permissions` TAB for the API, this can be any value, for eg: `use.svc`
 - Assign the permissions to the scope you just created; go to the `Machine to Machine Applications` tab, select the service and then check the [tickbox](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/auth0-4.png)
 
+That's it (one of the reasons I love auth0)! Now we need to configure the policy for the service that envforces Authentication using this STS. Go back to the inbound [Policy configuration](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim3.png). And a the following code in the `<inbound>` tag:
 
+```
+        <validate-jwt header-name="Authorization" failed-validation-error-message="Unauthorized....." require-scheme="Bearer">
+            <openid-config url="https://XXX_YOURDOMAIN_XXX/.well-known/openid-configuration" />
+            <issuer-signing-keys>
+                <key>XXX_SIGNING_KEY_XXX</key>
+            </issuer-signing-keys>
+            <audiences>
+                <audience>XXX_AUDIENCE_XXX</audience>
+            </audiences>
+            <issuers>
+                <issuer>XXX_YOURDOMAIN_XXX</issuer>
+            </issuers>
+            <required-claims>
+                <claim name="scope" match="any" separator=" ">
+                    <value>XXX_SCOPE_XXX</value>
+                </claim>
+            </required-claims>
+        </validate-jwt>
+```
 
+You can find the data for the ```XXX``` values here:
+
+- XXX_YOURDOMAIN_XXX; go to the [Test tab](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/auth0-5.png)
+- XXX_SIGNING_KEY_XXX; you can find the Signing key in the  `Settings` tab, you need to scroll down a bit. *ATTENTION*  you need to base64 encode this value before you put it in the policy. You can use https://www.base64encode.org/ for example.
+- XXX_AUDIENCE_XXX; This is the `Identifier` value in the `Settings` tab
+- XXX_SCOPE_XXX; This is the name of the scope you have defined.
+
+Now you are done, let's test this using postman.
+
+Create a service for your getting your Authoristion token from AUTH0:
+
+![Postman 1](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/postman1.png)
 
 
 
