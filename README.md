@@ -113,7 +113,16 @@ If you have configured your `<forward-request />` and the proper `Web service UR
 
 #### Configure Authentication
 
-There are multiple ways to enforce authentication on your services using APIM.
+There are multiple ways to enforce authentication on your services using APIM. 
+We will use AUTH0 as Secure Token Service (STS), please create an account (it's free) at https://auth0.com/
+
+Once you have signed up, you will have an instance which can provide a token service for you. Take the following steps:
+
+- Create an [API](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/auth0-1.png)
+
+
+
+
 
 
 ## Links
