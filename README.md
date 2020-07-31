@@ -119,6 +119,9 @@ We will use AUTH0 as Secure Token Service (STS), please create an account (it's 
 Once you have signed up, you will have an instance which can provide a token service for you. Take the following steps:
 
 - Create an [API](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/auth0-1.png)
+- Configure [API](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/auth0-2.png) , fill in the name and identifier and select `HS256` as Signing algorithm, this will create an API and a AUTH0 application as well
+- Create a [scope](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/auth0-3.png), by selecting the `Permissions` TAB for the API, this can be any value, for eg: `use.svc`
+- Assign the permissions to the scope you just created; go to the `Machine to Machine Applications` tab, select the service and then check the [tickbox](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/auth0-4.png)
 
 
 
