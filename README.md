@@ -63,7 +63,7 @@ After this deployments you should be able to:
 
 ### Config APIM
 
-#### Setup services hosted on aks cluster
+#### Setup services
 
 In your Azure Poral go to the APIM and select the API tab:
 
@@ -92,23 +92,32 @@ In this policy you should forward your backend request to the AKS backend servic
 </policies>
 ```
 Please note that you can configure this policy on Operation level or more globally on API level. If you do not configure this, you backend service will never be reached, also have a look at the caching possibilities.
+Of course you can configure other policies as well, for more information please read the [APIM documentation](https://docs.microsoft.com/en-us/azure/api-management/).
 
 In the `Settings` tab you need to configure the URL of your backend service. If you used the scripts in this repo you should have 2 domains configured:
+
 ```
 hello.apimdemo.service.local
 poker.apimdemo.service.local
 ```
-both services are pointing to the internal loadbalancer, which is pre configured on this address: `15.1.2.100`. This address is used by the nginx ingress controller, which will make sure that you address the appropriate services.
 
-For the hello service you used fill in: `http://hello.apimdemo.service.local` in the `Web service URL` field. Make sure you select `HTTP`. 
+Both services are pointing to the internal loadbalancer, which is pre configured on this address: `15.1.2.100`. This address is used by the nginx ingress controller, which will make sure that you address the appropriate services which are deployed on the AKS cluster.
+
+For the hello service you enter: `http://hello.apimdemo.service.local` in the `Web service URL` field. Make sure you select `HTTP`.
+
 For the poker service your config should look like this:
 
 ![Config APIM service](https://raw.githubusercontent.com/chrisvugrinec/apim-demo/master/images/apim5.png)
 
+If you have configured your `<forward-request />` and the proper `Web service URL` you should be able to test your service through the portal. Ps If testing using an external tool like *Postman* make sure you post the required headers as well, for eg `Ocp-Apim-Subscription-Key` with the key for the defined APIM product.
 
+#### Configure Authentication
+
+There are multiple ways to enforce authentication on your services using APIM.
 
 
 ## Links
 
-- java springboot swagger example; https://github.com/hendisantika/spring-boot-rest-swagger-example
-
+- APIM documentation; https://docs.microsoft.com/en-us/azure/api-management/
+- APIM AAD authentication; https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad
+- oauth2; https://auth0.com/docs/integrations/azure-api-management
