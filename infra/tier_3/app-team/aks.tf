@@ -12,6 +12,7 @@ resource "azurerm_kubernetes_cluster" "demo" {
   resource_group_name = var.rg-name
   dns_prefix          = var.aks-name
   depends_on          = [azurerm_resource_group.demo]
+  kubernetes_version  = var.k8-version
 
   default_node_pool {
     name           = "pool1"
@@ -46,8 +47,16 @@ resource "azurerm_kubernetes_cluster" "demo" {
     oms_agent {
       enabled = false
     }
-
   }
+  
+  role_based_access_control {
+    enabled = true 
+    azure_active_directory {
+      managed = true
+      admin_group_object_ids = [var.admin_group_object_id]
+    }
+  }
+
 
   private_cluster_enabled = false
 
@@ -59,6 +68,7 @@ resource "azurerm_kubernetes_cluster" "demo" {
 
   tags = var.tags
 }
+
 
 
 output kube_id {

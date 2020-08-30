@@ -23,3 +23,5 @@ echo "storage_account_name: $STORAGE_ACCOUNT_NAME"
 echo "container_name: $CONTAINER_NAME_TIER2"
 echo "container_name: $CONTAINER_NAME_TIER3"
 echo "access_key: $ACCOUNT_KEY"
+echo "make sure to set execute the following: "
+echo "export ARM_ACCESS_KEY="$ACCOUNT_KEY
