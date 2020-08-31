@@ -24,6 +24,7 @@ resource "azurerm_subnet" "mgmt-subnet" {
   resource_group_name  = azurerm_resource_group.network-rg.name
   virtual_network_name = azurerm_virtual_network.mgmt-vnet.name
   address_prefixes       = [var.mgmt-subnet-cidr]
+  enforce_private_link_endpoint_network_policies = true
 }
 
 resource "azurerm_subnet" "apim-subnet" {
@@ -45,26 +46,6 @@ data "azurerm_virtual_network" "aks-vnet" {
   depends_on          = [azurerm_virtual_network.aks-vnet]
 }
 
-
-# MgmtHub VNET Peering to AKS
-resource "azurerm_virtual_network_peering" "mgmt-aks-peering" {
-  name                         = "${var.mgmt-vnet}-to-${var.aks-vnet}"
-  resource_group_name          = azurerm_resource_group.network-rg.name
-  virtual_network_name         = azurerm_virtual_network.mgmt-vnet.name
-  remote_virtual_network_id    = data.azurerm_virtual_network.aks-vnet.id
-  allow_forwarded_traffic      = true
-  allow_virtual_network_access = true
-}
-
-# AKS VNET Peering to ManagementHub
-resource "azurerm_virtual_network_peering" "aks-mgmt-peering" {
-  name                         = "${var.aks-vnet}-to-${var.mgmt-vnet}"
-  resource_group_name          = azurerm_resource_group.network-rg.name
-  virtual_network_name         = azurerm_virtual_network.aks-vnet.name
-  remote_virtual_network_id    = data.azurerm_virtual_network.mgmt-vnet.id
-  allow_forwarded_traffic      = true
-  allow_virtual_network_access = true
-}
 
 output apim-subnet-id {
    value =  azurerm_subnet.apim-subnet.id

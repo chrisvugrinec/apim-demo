@@ -1,6 +1,7 @@
 # Local .terraform directories
 **/.terraform/*
 services/poker-springboot-service/target/*
+infra/tier_post_aks/plan.out
 
 # .tfstate files
 *.tfstate

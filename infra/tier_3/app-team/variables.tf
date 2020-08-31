@@ -15,7 +15,6 @@ variable "k8-version" {
 }
 
 variable "id-name" {}
-variable "dns-zone" {}
 variable "keyvault-name" {}
 variable "aks-name" {}
 variable "rg-name" {}
